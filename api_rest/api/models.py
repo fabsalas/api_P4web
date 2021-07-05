@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-Class Libro(models.Model):
+class Libro(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=99)
     autor = models.CharField(max_length=99)
