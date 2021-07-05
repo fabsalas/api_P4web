@@ -38,10 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
-    'rest_framework',
-    'corsheaders',
+    'api',                     #Mi app de django
+    'rest_framework',           #libreria para la construcción de una api rest para django
+    'corsheaders',              #libreria para la configuración de los CORS para no tener problemas con navegadores web.
+    'rest_framework.authtoken', #libreria para poder usar la autentificación meidante token.
 ]
+
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

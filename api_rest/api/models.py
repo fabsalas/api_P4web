@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -10,3 +11,7 @@ class Libro(models.Model):
     precio= models.IntegerField(default=0)
     stock= models.IntegerField(default=0)
     publicacion = models.DateField
+
+class Cuenta(models.Model):
+    usuario= models.OneToOneField(User, on_delete=models.CASCADE)
+    libros= models.ManyToManyField(Libro)
