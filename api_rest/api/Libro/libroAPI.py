@@ -7,16 +7,19 @@ from rest_framework.permissions import IsAuthenticated
 
 class LibroAPI(APIView):
     permission_classes = [IsAuthenticated] #para verificar que existe una autentificación.
-    def get(self, request):
-        libros= Libro.objects.all()
-        serializer = LibroSerializer(libros, many = True) #many = True para que me genere una lista
     
+    def get(self, request, id):
+        try: 
+            libros= Libro.objects.all()
+            serializer = LibroSerializer(libros, many = True) #many = True para que me genere una lista
 
-        return Response(serializer.data, status=200)
+            return Response(serializer.data, status=200)
+        except:
+                return Response(status=400)
 
     def post(self, request):
-        data = request.data
-        serializer= LibroSerializer(data=data)
+        #data = request.data
+        serializer= LibroSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()

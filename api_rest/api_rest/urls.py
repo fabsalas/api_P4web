@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from api.Login.LoginAPI import LoginAPI
+from api.Login.LoginAPI import LoginAPI, LogoutAPI
 from django.contrib import admin
 from django.urls import path
 
@@ -26,13 +26,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     #LIBRO
-    path('api/v1/libro/select/', LibroAPI.as_view(), name='LibroAPI'), #URL GET
+    path('api/v1/libro/select/<int:id>/', LibroAPI.as_view(), name='LibroAPI'), #URL GET
     path('api/v1/libro/create/', LibroAPI.as_view(), name='LibroAPI'), #URL POST
     path('api/v1/libro/update/<int:id>/', LibroAPI.as_view(), name='LibroAPI'), #URL PUT
-    path('api/v1/libro/create/<int:id>/', LibroAPI.as_view(), name='LibroAPI'), #URL DELETE
+    path('api/v1/libro/delete/<int:id>/', LibroAPI.as_view(), name='LibroAPI'), #URL DELETE
 
     #LOGIN
     path('api/v1/login/', LoginAPI.as_view(), name='LoginAPI'), #URL POST
-    path('api/v1/logout/', LoginAPI.as_view(), name='LoginAPI'), #URL POST
+    path('api/v1/logout/', LogoutAPI.as_view(), name='LoginAPI'), #URL POST
 ]
 urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

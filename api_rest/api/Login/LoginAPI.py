@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 
 class LoginAPI(APIView):
     def post(self, request):
-        data = request.databases
+        data = request.data
 
         username = data['username']
         password = data['password']
@@ -30,11 +30,11 @@ class LoginAPI(APIView):
 class LogoutAPI(APIView):
     def post(self, request):
         try:
-            data = request.data
+            data  = request.data
             token = data['token']
-            token= Token.objects.filter(key = token)
+            token = Token.objects.filter(key = token)
             token.delete()
 
-            return Response({"Token Eliminado correctamente"}, status=200)
+            return Response(status=200)
         except:
-            return Response({"Error": "token no ha sido eliminado"}, status=400)
+                return Response(status=400)
